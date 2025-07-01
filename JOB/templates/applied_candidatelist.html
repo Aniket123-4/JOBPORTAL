@@ -1,0 +1,53 @@
+{%  load static %}
+
+
+{% block body %}
+
+{% include 'recruiter_navigation.html' %}
+<style>
+ tr{text-align : center}
+
+</style>
+
+<marquee style = "font-family : 'Monotype corsiva' ; font-size :25px; color : blue ; background-color : black ; font-weight : bold ; margin-top:1%">
+ View Applied candidates
+</marquee>
+<hr>
+
+<table class="table table-hover container" id="example">
+ <thead>
+ <tr style = "background-color : gray">
+  <th>Serial No.</th>
+  <th>Full Name</th>
+  <th>Email ID</th>
+  <th>Job Title</th>
+  <th>Company Name</th>
+  <th>Contact</th>
+
+  <th>Apply Date</th>
+   <th>Resume</th>
+ </tr>
+ </thead>
+ <tbody>
+ {% for i in data %}
+     <tr>
+      <td>{{forloop.counter}}</td>
+      <td>{{i.student.user.first_name}} {{i.student.user.last_name}}</td>
+      <td>{{i.student.user.username}}</td>
+      <td>{{i.jobs.title}}</td>
+      <td>{{i.jobs.recruiter.company}}</td>
+      <td>{{i.student.mobile}}</td>
+      <td>{{i.applydate}}</td>
+      <td><a href="{{i.resume.url}}"> Download Resume</a></td>
+
+
+     </tr>
+
+ {% endfor  %}
+ </tbody>
+</table>
+
+
+
+
+{% endblock %}

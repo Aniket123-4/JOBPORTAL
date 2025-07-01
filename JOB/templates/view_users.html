@@ -1,0 +1,44 @@
+{%  load static %}
+
+
+{% block body %}
+
+{% include 'admin_navigation.html' %}
+
+
+<marquee style = "font-family : 'Monotype corsiva' ; font-size :25px; color : blue ; background-color : black ; font-weight : bold ; margin-top:1%">
+ View All Student Users
+</marquee>
+<hr>
+
+<table class="table table-hover container" id="example">
+ <thead>
+ <tr style = "background-color : gray">
+  <th>Serial No.</th>
+  <th>Full Name</th>
+  <th>Email ID</th>
+  <th>Contact NO.</th>
+  <th>Gender</th>
+  <th>Image</th>
+  <th>Action</th>
+ </tr>
+ </thead>
+ <tbody>
+ {% for i in data %}
+     <tr>
+      <td>{{forloop.counter}}</td>
+      <td>{{i.user.first_name}} {{i.user.last_name}}</td>
+      <td>{{i.user.username}}</td>
+      <td>{{i.mobile}}</td>
+      <td>{{i.gender}}</td>
+      <td><img src="{{i.image.url}}" style ="width:100px ; height: 100px; border-radius:50%"></td>
+      <td><a href ="{% url 'delete_user' i.user.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+     </tr>
+ {% endfor  %}
+ </tbody>
+</table>
+
+
+
+
+{% endblock %}

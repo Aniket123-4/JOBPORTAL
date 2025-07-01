@@ -1,0 +1,55 @@
+{%  load static %}
+
+
+{% block body %}
+
+{% include 'recruiter_navigation.html' %}
+
+<marquee style = "font-family : 'Monotype corsiva' ; font-size :25px; color : blue ; background-color : black ; font-weight : bold ; margin-top:1%">
+ Change Company Logo
+</marquee>
+<hr>
+<form class="container mt-5" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class ="form-row">
+        <div class="form-col-md-12">
+            <label><b>Job Title</b></label>
+            <input type="text" class="form-control" readonly name="jobtitle" value="{{Job.title}}" required>
+        </div>
+    </div>
+
+
+    <div class ="form-row">
+
+          <div class="form-col-md-12">
+            <img src ="{{Job.image.url}}" width="120" height="90"> <a href="">Change Company Logo</a>
+          </div>
+
+    </div>
+  <div class ="form-row">
+      <div class="form-col-md-12">
+            <label><b>Company Logo</b></label>
+            <input type="file" class="form-control" name="logo" required><br>
+    </div>
+    </div>
+
+
+    <input type="submit" value="Submit" class="btn btn-primary" style="width:200px">
+
+</form>
+{% if error == "no" %}
+<script>
+    alert("Logo has been Updated Successfully");
+    window.location =('{% url 'change_companylogo' Job.id %}')
+</script>
+{% endif %}
+
+{% if error == "yes"%}
+<script>
+    alert("Something went wrong,Try again....");
+</script>
+{% endif %}
+
+
+{% endblock %}

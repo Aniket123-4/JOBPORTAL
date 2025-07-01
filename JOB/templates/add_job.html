@@ -1,0 +1,73 @@
+{%  load static %}
+
+
+{% block body %}
+
+{% include 'recruiter_navigation.html' %}
+
+<marquee style = "font-family : 'Monotype corsiva' ; font-size :25px; color : blue ; background-color : black ; font-weight : bold ; margin-top:1%">
+ Add Job Details
+</marquee>
+<hr>
+<form class="container mt-5" onsubmit="return checkpass();" name="signup" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label><b>Job Title</b></label>
+            <input type="text" class="form-control" name="jobtitle" required>
+    <div class ="form-row">
+        <div class="form-col-md-6">
+            <label><b>Start Date</b></label>
+            <input type="date" class="form-control" name="startdate"  required><br>
+        </div>
+          <div class="form-col-md-6">
+            <label><b>End Date</b></label>
+            <input type="date" class="form-control" name="enddate"  required><br>
+        </div>
+    </div>
+
+
+    <div class ="form-row">
+        <div class="form-col-md-6">
+            <label><b>Salary(per month)</b></label>
+            <input type="text" class="form-control" name="salary"  required><br>
+        </div>
+          <div class="form-col-md-6">
+            <label><b>Company Logo</b></label>
+            <input type="file" class="form-control" name="logo"  required><br>
+        </div>
+    </div>
+
+            <label><b>Experience(In Years)</b></label>
+            <input type="text" class="form-control" name="experience" required><br>
+
+
+           <label><b>Company Location</b></label>
+            <input type="text" class="form-control" name="location" required><br>
+
+
+                <label><b>Skills Required</b></label>
+            <input type="text" class="form-control" name="skills" required><br>
+
+
+                <label><b>Description</b></label>
+            <textarea class="form-control" name="description" required></textarea><br>
+
+
+     <input type="submit" value="Submit" class="btn btn-primary" style="width:200px">
+
+</form>
+{% if error == "no" %}
+<script>
+    alert("Job Uploaded Successfully");
+    window.location =('{% url 'job_list' %}')
+</script>
+{% endif %}
+
+{% if error == "yes"%}
+<script>
+    alert("Something went wrong,Try again....");
+</script>
+{% endif %}
+
+
+{% endblock %}
